@@ -1,4 +1,4 @@
-package com.example.nickerman.trainbrain;
+package com.example.nickerman.trainbrain._______model;
 
 /**
  * Created by AdminVN on 22.03.2018.
