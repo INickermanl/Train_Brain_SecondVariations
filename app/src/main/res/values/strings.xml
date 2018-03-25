@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TrainBrain</string>
+
+    <string name="select_TrueFalse">Train Brain True False</string>
+    <string name="quantity_questions"> Select quantity Questions</string>
+    <string name="quantity_second_to_end">Select quantity second</string>
 </resources>

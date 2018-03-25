@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="._ChooseGameTrueOrFalse.ChooseGameTrueOrFalseActivity" />
+        <activity android:name="._ChooseGameTrueOrFalse.GameChooseTrueOrFalseActivity" />
         <activity android:name=".__selectGame.SelectGame" />
         <activity android:name="._ChooseGameTrueOrFalse.SettingsGameChooseTrueOrFalse"></activity>
     </application>

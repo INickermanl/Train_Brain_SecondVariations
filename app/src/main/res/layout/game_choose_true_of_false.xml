@@ -5,14 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.nickerman.trainbrain._ChooseGameTrueOrFalse.ChooseGameTrueOrFalseActivity">
+    tools:context="com.example.nickerman.trainbrain._ChooseGameTrueOrFalse.GameChooseTrueOrFalseActivity">
 
-
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="start" />
 
     <LinearLayout
         android:layout_width="match_parent"

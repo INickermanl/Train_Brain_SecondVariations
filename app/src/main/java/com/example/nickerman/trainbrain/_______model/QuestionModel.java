@@ -10,6 +10,9 @@ public class QuestionModel {
     private int mValue2;
     private boolean mUserAnswer;
     private String mMathematicalSymbol;
+    private int mViewAnswer;
+    private int mResult;
+
 
 
     public QuestionModel(int value1, int value2, String mathematicalSymbol){
@@ -20,6 +23,15 @@ public class QuestionModel {
 
     }
 
+
+    public QuestionModel(int viewAnswer, int result){
+        mViewAnswer = viewAnswer;
+        mResult = result;
+    }
+
+    public int getResult() {
+        return mResult;
+    }
 
     public int getValue1() {
         return mValue1;
@@ -49,7 +61,16 @@ public class QuestionModel {
         return mMathematicalSymbol;
     }
 
-    public void setMathimaticsSymbol(String mathimaticsSymbol) {
-        mMathematicalSymbol = mathimaticsSymbol;
+    public void setMathimaticsSymbol(String mathematicalSymbol) {
+        mMathematicalSymbol = mathematicalSymbol;
     }
+    public int getViewAnswer() {
+        return mViewAnswer;
+    }
+
+    public void setViewAnswer(int viewAnswer) {
+        mViewAnswer = viewAnswer;
+    }
+
+
 }
