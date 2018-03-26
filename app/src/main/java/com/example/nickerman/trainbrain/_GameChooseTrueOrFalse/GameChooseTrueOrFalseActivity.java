@@ -192,6 +192,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         if(mCurrentIndex < mQuantityQuestions - 1){
             if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_true == view.getId()) {
+                countDownTimer.cancel();
                 mQuantityRightAnswer++;
                 mCurrentIndex++;
                 //update btn
@@ -199,14 +200,18 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
             } else {
                 mCurrentIndex++;
+                countDownTimer.cancel();
                 // update btn
                 mViewQuestion.setText(setViewQuestion());
             }
         }else{ if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
                 && R.id.button_true == view.getId()) {
             mQuantityRightAnswer++;
+            countDownTimer.cancel();
 
         }
+
+            countDownTimer.cancel();
             Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
             intent.putExtra(intentResult, mQuantityRightAnswer);
             startActivity(intent);
@@ -219,22 +224,28 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         if(mCurrentIndex < mQuantityQuestions - 1) {
             if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_false == view.getId()) {
+                countDownTimer.cancel();
                 mQuantityRightAnswer++;
                 mCurrentIndex++;
                 //update btn
                 mViewQuestion.setText(setViewQuestion());
 
             } else {
+                countDownTimer.cancel();
                 mCurrentIndex++;
                 //update btn
                 mViewQuestion.setText(setViewQuestion());
             }
         }else{
-            if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
-                    && R.id.button_true == view.getId()) {
+            if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
+                    && R.id.button_false == view.getId()) {
                 mQuantityRightAnswer++;
+                countDownTimer.cancel();
 
             }
+
+
+            countDownTimer.cancel();
             Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
             intent.putExtra(intentResult, mQuantityRightAnswer);
             startActivity(intent);
@@ -258,7 +269,17 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    view_time.setText("Hell");
+                   if(mCurrentIndex < mQuantityQuestions - 1){
+                       mCurrentIndex++;
+                       mViewQuestion.setText(setViewQuestion());
+                       addTime(mView_time);
+
+                   }else{
+                       countDownTimer.cancel();
+                       Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
+                       intent.putExtra(intentResult, mQuantityRightAnswer);
+                       startActivity(intent);
+                   }
                 }
             }.start();
 
