@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="horizontal"
-    tools:context="com.example.nickerman.trainbrain._ChooseGameTrueOrFalse.ResultActivity">
+    tools:context="com.example.nickerman.trainbrain._GameChooseTrueOrFalse.ResultActivity">
 
     <TextView
         android:id="@+id/resultView"

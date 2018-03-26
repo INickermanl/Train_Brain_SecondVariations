@@ -1,10 +1,12 @@
-package com.example.nickerman.trainbrain._ChooseGameTrueOrFalse;
+package com.example.nickerman.trainbrain._GameChooseTrueOrFalse;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -13,9 +15,11 @@ import com.example.nickerman.trainbrain._______model.QuestionModel;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.zip.Inflater;
 
 public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
+    private TextView mView_time;
 
     private TextView mViewQuestion;
     private ImageButton mTrueButton;
@@ -36,6 +40,16 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     private static final String intentResult = "Game.ChooseTrueOrFalse";
 
 
+    CountDownTimer countDownTimer;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.game_true_or_false, menu);
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +58,8 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         Intent intent = getIntent();
          mQuantityQuestions = Integer.parseInt(intent.getStringExtra("Settings.Game.Quantity.Question"));
          mQuantitySeconds = Integer.parseInt(intent.getStringExtra("Settings.Game.Quantity.Seconds"));
+
+
 
         for (int i = 0; i < mQuantityQuestions; i++) {
 
@@ -56,14 +72,21 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
         mTrueButton = (ImageButton) findViewById(R.id.button_true);
         mFalseButton =(ImageButton) findViewById(R.id.button_false);
+        mView_time = findViewById(R.id.view_time);
+
+        addTime(mView_time);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch(view.getId()) {
                     case R.id.button_true:      updateTrueButton(view);
+                                                countDownTimer.cancel();
+                                                addTime(mView_time);
                                                 break;
                     case R.id.button_false :    updateFalseButton(view);
+                                                countDownTimer.cancel();
+                                                addTime(mView_time);
                                                 break;
                 }
             }
@@ -73,7 +96,11 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         mFalseButton.setOnClickListener(onClickListener);
 
 
+
+
     }
+
+
 
 
     //method get random number for first and second value QuestionModel.
@@ -214,6 +241,31 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         }
 
     }
+
+
+    public void addTime(final TextView view_time){
+
+        int second = mQuantitySeconds;
+
+
+            countDownTimer = new CountDownTimer(second * 1000, 1000) {
+                @Override
+                public void onTick(long millis) {
+                    view_time.setText(" " + (int) (millis / 1000));
+
+                }
+
+
+                @Override
+                public void onFinish() {
+                    view_time.setText("Hell");
+                }
+            }.start();
+
+
+    }
+
+
 
 
 

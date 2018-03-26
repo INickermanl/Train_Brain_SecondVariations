@@ -1,4 +1,4 @@
-package com.example.nickerman.trainbrain._ChooseGameTrueOrFalse;
+package com.example.nickerman.trainbrain._GameChooseTrueOrFalse;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

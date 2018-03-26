@@ -5,8 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.nickerman.trainbrain._ChooseGameTrueOrFalse.GameChooseTrueOrFalseActivity">
+    tools:context="com.example.nickerman.trainbrain._GameChooseTrueOrFalse.GameChooseTrueOrFalseActivity">
 
+    <TextView
+        android:id="@+id/view_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,0 +1,59 @@
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Item" />
+</menu>-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="._GameChooseTrueOrFalse.GameChooseTrueOrFalseActivity" >
+
+    <item
+        android:id="@+id/item_for_time_count"
+        android:checkable="false"
+        android:enabled="true"
+        android:orderInCategory="102"
+        android:title="hel"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:checkable="false"
+        android:orderInCategory="103"
+        android:title=""
+        app:showAsAction="always" />
+    <item
+        android:checkable="false"
+        android:orderInCategory="103"
+        android:title=""
+        app:showAsAction="always" />
+    <item
+        android:title=""
+        android:checkable="false"
+        android:orderInCategory="103"
+        app:showAsAction="always" />
+    <item
+        android:title=""
+        android:checkable="false"
+        android:orderInCategory="103"
+        app:showAsAction="always" />
+    <item
+        android:title=""
+        android:checkable="false"
+        android:orderInCategory="103"
+        app:showAsAction="always" />
+    <item
+        android:title=""
+        android:checkable="false"
+        android:orderInCategory="103"
+        app:showAsAction="always" />
+    <item android:id="@+id/item_for_question_quantity"
+        android:title="hel"
+        android:checkable="false"
+        android:visible="true"
+        android:orderInCategory="104"
+        app:showAsAction="always"
+
+        />
+</menu>

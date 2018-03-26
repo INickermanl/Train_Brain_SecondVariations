@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -16,10 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="._ChooseGameTrueOrFalse.GameChooseTrueOrFalseActivity" />
+        <activity android:name="._GameChooseTrueOrFalse.GameChooseTrueOrFalseActivity" />
         <activity android:name=".__selectGame.SelectGame" />
-        <activity android:name="._ChooseGameTrueOrFalse.SettingsGameChooseTrueOrFalse" />
-        <activity android:name="._ChooseGameTrueOrFalse.ResultActivity"></activity>
+        <activity android:name="._GameChooseTrueOrFalse.SettingsGameChooseTrueOrFalse" />
+        <activity android:name="._GameChooseTrueOrFalse.ResultActivity" />
     </application>
 
 </manifest>

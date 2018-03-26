@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.nickerman.trainbrain.R;
-import com.example.nickerman.trainbrain._ChooseGameTrueOrFalse.GameChooseTrueOrFalseActivity;
-import com.example.nickerman.trainbrain._ChooseGameTrueOrFalse.SettingsGameChooseTrueOrFalse;
+import com.example.nickerman.trainbrain._GameChooseTrueOrFalse.SettingsGameChooseTrueOrFalse;
 
 public class SelectGame extends AppCompatActivity {
 
