@@ -33,18 +33,18 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/button_false"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:background="@drawable/ic_false_button"
+            android:clickable="true"/>
 
-            android:background="@drawable/ic_false_button" />
-
-        <Button
+        <ImageButton
             android:id="@+id/button_true"
             android:layout_width="75dp"
             android:layout_height="75dp"
-
+            android:clickable="true"
             android:background="@drawable/ic_true_button" />
 
 

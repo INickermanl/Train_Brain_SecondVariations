@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.nickerman.trainbrain.R;
@@ -17,18 +18,22 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
 
     private TextView mViewQuestion;
-    private Button mTrueButton;
-    private Button mFalseButton;
+    private ImageButton mTrueButton;
+    private ImageButton mFalseButton;
 
 
     private int mQuantityQuestions;
     private int mQuantitySeconds;
 
+
     private int mCurrentIndex = 0;
+    private int mQuantityRightAnswer = 0;
 
 
 
     private ArrayList<QuestionModel> mQuestionModel = new ArrayList<>();
+
+    private static final String intentResult = "Game.ChooseTrueOrFalse";
 
 
     @Override
@@ -40,7 +45,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
          mQuantityQuestions = Integer.parseInt(intent.getStringExtra("Settings.Game.Quantity.Question"));
          mQuantitySeconds = Integer.parseInt(intent.getStringExtra("Settings.Game.Quantity.Seconds"));
 
-        for (int i = 0; i < mQuantityQuestions - 1; i++) {
+        for (int i = 0; i < mQuantityQuestions; i++) {
 
             mQuestionModel.add(i, new QuestionModel(getRandomNumber(),getRandomNumber(),getRandomMathematicalSymbol()));
 
@@ -48,6 +53,24 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
         mViewQuestion = findViewById(R.id.view_question);
         mViewQuestion.setText(setViewQuestion());
+
+        mTrueButton = (ImageButton) findViewById(R.id.button_true);
+        mFalseButton =(ImageButton) findViewById(R.id.button_false);
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch(view.getId()) {
+                    case R.id.button_true:      updateTrueButton(view);
+                                                break;
+                    case R.id.button_false :    updateFalseButton(view);
+                                                break;
+                }
+            }
+        };
+
+        mTrueButton.setOnClickListener(onClickListener);
+        mFalseButton.setOnClickListener(onClickListener);
 
 
     }
@@ -137,8 +160,60 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
 
     //METHOD FOR BUTTONS
+        //update true button
+    private void updateTrueButton(View view){
+        if(mCurrentIndex < mQuantityQuestions - 1){
+            if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
+                    && R.id.button_true == view.getId()) {
+                mQuantityRightAnswer++;
+                mCurrentIndex++;
+                //update btn
+                mViewQuestion.setText(setViewQuestion());
 
-    
+            } else {
+                mCurrentIndex++;
+                // update btn
+                mViewQuestion.setText(setViewQuestion());
+            }
+        }else{ if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
+                && R.id.button_true == view.getId()) {
+            mQuantityRightAnswer++;
+
+        }
+            Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
+            intent.putExtra(intentResult, mQuantityRightAnswer);
+            startActivity(intent);
+        }
+
+    }
+
+    //update false button
+    private void updateFalseButton(View view){
+        if(mCurrentIndex < mQuantityQuestions - 1) {
+            if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
+                    && R.id.button_false == view.getId()) {
+                mQuantityRightAnswer++;
+                mCurrentIndex++;
+                //update btn
+                mViewQuestion.setText(setViewQuestion());
+
+            } else {
+                mCurrentIndex++;
+                //update btn
+                mViewQuestion.setText(setViewQuestion());
+            }
+        }else{
+            if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
+                    && R.id.button_true == view.getId()) {
+                mQuantityRightAnswer++;
+
+            }
+            Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
+            intent.putExtra(intentResult, mQuantityRightAnswer);
+            startActivity(intent);
+        }
+
+    }
 
 
 

@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Train_Brain_SecondVariations.iml" filepath="$PROJECT_DIR$/Train_Brain_SecondVariations.iml" />
       <module fileurl="file://D:\ANDROID\PROJECT\Train_Brain_SecondVariations\Train_Brain_SecondVariations.iml" filepath="D:\ANDROID\PROJECT\Train_Brain_SecondVariations\Train_Brain_SecondVariations.iml" />
+      <module fileurl="file://D:\Project\Train_Brain_SecondVariations\Train_Brain_SecondVariations.iml" filepath="D:\Project\Train_Brain_SecondVariations\Train_Brain_SecondVariations.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://D:\ANDROID\PROJECT\Train_Brain_SecondVariations\app\app.iml" filepath="D:\ANDROID\PROJECT\Train_Brain_SecondVariations\app\app.iml" />
+      <module fileurl="file://D:\Project\Train_Brain_SecondVariations\app\app.iml" filepath="D:\Project\Train_Brain_SecondVariations\app\app.iml" />
     </modules>
   </component>
 </project>
