@@ -2,7 +2,7 @@
     <string name="app_name">TrainBrain</string>
 
     <string name="select_TrueFalse">Train Brain True False</string>
-    <string name="quantity_questions"> Select quantity Questions</string>
-    <string name="quantity_second_to_end">Select quantity second</string>
+    <string name="quantity_questions">Number of possible errors</string>
+    <string name="quantity_second_to_end">Enter quantity Second</string>
     <string name="action_settings">Settings</string>
 </resources>

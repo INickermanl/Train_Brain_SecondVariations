@@ -32,12 +32,14 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     private ImageButton mFalseButton;
 
 
-    private int mQuantityQuestions;
+    private int mQuantityMistakes;
     private int mQuantitySeconds;
 
 
     private int mCurrentIndex = 0;
     private int mQuantityRightAnswer = 0;
+    private int mCountMistake = 0;
+    private int mI = 0;
 
 
 
@@ -72,19 +74,19 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
 
 
-
         //get quantity time and questions in ptiv
          Intent intent = getIntent();
-         mQuantityQuestions = Integer.parseInt(intent.getStringExtra("Settings.Game.Quantity.Question"));
+        mQuantityMistakes = Integer.parseInt(intent.getStringExtra("Settings.Game.Quantity.Question"));
          mQuantitySeconds = Integer.parseInt(intent.getStringExtra("Settings.Game.Quantity.Seconds"));
 
-
+         addQuestionModelElement();
             //create arrayList with random value
-        for (int i = 0; i < mQuantityQuestions; i++) {
+        /*for (int i = 0; mQuantityQuestions != ; i++) {
 
             mQuestionModel.add(i, new QuestionModel(getRandomNumber(),getRandomNumber(),getRandomMathematicalSymbol()));
 
-        }
+        }*/
+
 
         mViewQuestion = findViewById(R.id.view_question);
         mViewQuestion.setText(setViewQuestion());
@@ -212,33 +214,14 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     //METHOD FOR BUTTONS
         //update true button
     private void updateTrueButton(View view){
-        if(mCurrentIndex < mQuantityQuestions - 1){
+        if((mQuantityMistakes) != mCountMistake){
             if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_true == view.getId()) {
-                //if user answer right stop time, step up index and quantity right answer
-                countDownTimer.cancel();
-                ++mQuantityRightAnswer;
-                mCurrentIndex++;
-                //update btn
-                mViewQuestion.setText(setViewQuestion());
-                mQuantityQuestionsView.setText(" " + mQuantityRightAnswer);
-
-            } else {
-                //if user answer wrong just step up index
-                mCurrentIndex++;
-                countDownTimer.cancel();
-                // update btn
-                mViewQuestion.setText(setViewQuestion());
+                rightUserAnswer();
+            }else{
+                mistakesUserSorry();
             }
-        }else if (mCurrentIndex == mQuantityQuestions - 1){
-                    if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
-                                && R.id.button_true == view.getId()) {
-                        ++mQuantityRightAnswer;
-                        countDownTimer.cancel();
-                        mQuantityQuestionsView.setText(" " + mQuantityRightAnswer);
-
-        }
-            //when and our arrayList show new activity result ,did't use addtime finish method because step up index to nonexistent
+        }else{
             startIntentResult();
         }
 
@@ -246,41 +229,22 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     //update false button
     private void updateFalseButton(View view){
-        if(mCurrentIndex < mQuantityQuestions - 1) {
+        if((mQuantityMistakes) != mCountMistake){
             if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_false == view.getId()) {
-                //if user answer right stop time, step up index and quantity right answer
-                countDownTimer.cancel();
-                ++mQuantityRightAnswer;
-                mCurrentIndex++;
-                //update btn
-                mViewQuestion.setText(setViewQuestion());
-                mQuantityQuestionsView.setText(" " + mQuantityRightAnswer);
-
-            } else {
-                //if user answer wrong just step up index
-                countDownTimer.cancel();
-                mCurrentIndex++;
-                //update btn
-                mViewQuestion.setText(setViewQuestion());
+                rightUserAnswer();
+            }else{
+                mistakesUserSorry();
             }
-        }//when last question (if user answer right)
-        else if (mCurrentIndex == mQuantityQuestions - 1){
-                    if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
-                            && R.id.button_false == view.getId()) {
-                        ++mQuantityRightAnswer;
-                        countDownTimer.cancel();
-
-            }
-
-            //when and our arrayList show new activity result ,did't use addtime finish method because step up index to nonexistent
-            startIntentResult();
+        }else {
+                        startIntentResult();
         }
-
     }
 
 
-    public void addTime(){
+
+
+    private void addTime(){
 
         int second = mQuantitySeconds;
 
@@ -298,23 +262,36 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     //when time is over
-                   if(mCurrentIndex < mQuantityQuestions - 1){
+                    mCountMistake++;
+                    mI++;
+                    mCurrentIndex++;
+                    addQuestionModelElement();
+                    if((mQuantityMistakes + 1) != mCountMistake){
+
+                        countDownTimer.cancel();
+                        mViewQuestion.setText(setViewQuestion());
+                        addTime();
+
+                    }else{
+                        startIntentResult();
+                    }
+
+                  /* if(mCurrentIndex < mQuestionModel.size() - 1){
                        mCurrentIndex++;
                        mViewQuestion.setText(setViewQuestion());
                        addTime();
 
                    }else if(mCurrentIndex == mQuantityQuestions - 1){
                        startIntentResult();
-                   }
+                   }*/
                 }
             }.start();
 
 
     }
 
-    public void startIntentResult(){
+    private void startIntentResult(){
         //so step up index arrayList for do't go to result activity twice
-        mCurrentIndex += 2;
         countDownTimer.cancel();
         //open result activity
         Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
@@ -323,7 +300,39 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     }
 
+    private void addQuestionModelElement(){
 
+        if(true){
+
+            mQuestionModel.add(mI, new QuestionModel(getRandomNumber(),getRandomNumber(),getRandomMathematicalSymbol()));
+        }
+    }
+
+    private void mistakesUserSorry(){
+        //if user answer wrong just step up index
+        mI++;
+        mCountMistake++;
+        mCurrentIndex++;
+        addQuestionModelElement();
+        countDownTimer.cancel();
+        // update btn
+        mViewQuestion.setText(setViewQuestion()); addQuestionModelElement();
+        countDownTimer.cancel();
+        // update btn
+        mViewQuestion.setText(setViewQuestion());
+    }
+
+    private void rightUserAnswer() {
+        countDownTimer.cancel();
+        ++mQuantityRightAnswer;
+        mI++;
+        mCurrentIndex++;
+        addQuestionModelElement();
+        //update btn
+        mViewQuestion.setText(setViewQuestion());
+        mQuantityQuestionsView.setText(" " + mQuantityRightAnswer);
+
+    }
 
 
 
