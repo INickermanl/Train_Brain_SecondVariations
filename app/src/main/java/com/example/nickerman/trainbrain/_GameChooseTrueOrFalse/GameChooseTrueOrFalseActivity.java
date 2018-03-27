@@ -204,17 +204,15 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                 // update btn
                 mViewQuestion.setText(setViewQuestion());
             }
-        }else{ if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
-                && R.id.button_true == view.getId()) {
-            mQuantityRightAnswer++;
-            countDownTimer.cancel();
+        }else if (mCurrentIndex == mQuantityQuestions - 1){
+                    if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
+                                && R.id.button_true == view.getId()) {
+                        mQuantityRightAnswer++;
+                        countDownTimer.cancel();
 
         }
 
-            countDownTimer.cancel();
-            Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
-            intent.putExtra(intentResult, mQuantityRightAnswer);
-            startActivity(intent);
+            startIntentResult();
         }
 
     }
@@ -236,19 +234,16 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                 //update btn
                 mViewQuestion.setText(setViewQuestion());
             }
-        }else{
-            if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
-                    && R.id.button_false == view.getId()) {
-                mQuantityRightAnswer++;
-                countDownTimer.cancel();
+        }else if (mCurrentIndex == mQuantityQuestions - 1){
+                    if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
+                            && R.id.button_false == view.getId()) {
+                    mQuantityRightAnswer++;
+                    countDownTimer.cancel();
 
             }
 
 
-            countDownTimer.cancel();
-            Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
-            intent.putExtra(intentResult, mQuantityRightAnswer);
-            startActivity(intent);
+            startIntentResult();
         }
 
     }
@@ -274,15 +269,21 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                        mViewQuestion.setText(setViewQuestion());
                        addTime(mView_time);
 
-                   }else{
-                       countDownTimer.cancel();
-                       Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
-                       intent.putExtra(intentResult, mQuantityRightAnswer);
-                       startActivity(intent);
+                   }else if(mCurrentIndex == mQuantityQuestions - 1){
+                       startIntentResult();
                    }
                 }
             }.start();
 
+
+    }
+
+    public void startIntentResult(){
+        mCurrentIndex += 2;
+        countDownTimer.cancel();
+        Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
+        intent.putExtra(intentResult, mQuantityRightAnswer);
+        startActivity(intent);
 
     }
 
