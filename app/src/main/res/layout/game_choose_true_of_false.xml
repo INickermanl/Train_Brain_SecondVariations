@@ -7,19 +7,59 @@
     android:orientation="vertical"
     tools:context="com.example.nickerman.trainbrain._GameChooseTrueOrFalse.GameChooseTrueOrFalseActivity">
 
-    <TextView
-        android:id="@+id/view_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+
+            <TextView
+                android:id="@+id/quantity_second_item"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/dark_red"
+                android:gravity="center_vertical"
+                android:text="15"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_time_toolbar"/>
+
+            <ImageView
+                android:layout_marginLeft="130dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_right_answer_user"/>
+
+            <TextView
+                android:id="@+id/quantity_questions_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:gravity="right|center"
+                android:text="333"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
-    </LinearLayout>
+        android:orientation="horizontal"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="2  +  2  = 4"
             android:textAlignment="center"
             android:textSize="36sp"
             android:textStyle="bold" />
@@ -51,14 +90,14 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/ic_false_button"
-            android:clickable="true"/>
+            android:clickable="true" />
 
         <ImageButton
             android:id="@+id/button_true"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:clickable="true"
-            android:background="@drawable/ic_true_button" />
+            android:background="@drawable/ic_true_button"
+            android:clickable="true" />
 
 
     </LinearLayout>
