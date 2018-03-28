@@ -41,6 +41,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     private int mCurrentIndex = 0;
     private int mQuantityRightAnswer = 0;
     private int mCountMistake = 0;
+    private int mViewCountMistakes = 0;
     private int mI = 0;
     private int mBreakCount = 0;
 
@@ -130,12 +131,20 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
         }*/
 
+        if(mQuantityMistakes == 1){
+            mViewCountMistakes = 1;
+        }else if(mQuantityMistakes == 0){
+            mViewCountMistakes = 1;
+        }else{
+
+        }
+
 
         mViewQuestion = findViewById(R.id.view_question);
         mViewQuestion.setText(setViewQuestion());
 
         //sent to toolbar quantity question
-        mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
+        mQuantityMistakesView.setText(" " + (mQuantityMistakes));
 
 
         mTrueButton = (ImageButton) findViewById(R.id.button_true);
@@ -257,7 +266,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     //METHOD FOR BUTTONS
         //update true button
     private void updateTrueButton(View view){
-        if((mQuantityMistakes - 1) > mCountMistake){
+        if((mQuantityMistakes - 1) > mCountMistake || mViewCountMistakes == 1){
             if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_true == view.getId()) {
                 rightUserAnswer();
@@ -272,7 +281,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     //update false button
     private void updateFalseButton(View view){
-        if((mQuantityMistakes - 1) > mCountMistake){
+        if((mQuantityMistakes - 1) > mCountMistake || mViewCountMistakes == 1){
             if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_false == view.getId()) {
                 rightUserAnswer();
@@ -308,13 +317,17 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                     mI++;
                     mCurrentIndex++;
                     addQuestionModelElement();
-                    if((mQuantityMistakes - 1) > mCountMistake){
-                        mCountMistake++;
-                        countDownTimer.cancel();
-                        mViewQuestion.setText(setViewQuestion());
-                        mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
-                        addTime();
+                    if((mQuantityMistakes - 1) > mCountMistake || mViewCountMistakes == 1){
 
+                        if(mViewCountMistakes == 1){
+                            startIntentResult();
+                        }else {
+                            mCountMistake++;
+                            countDownTimer.cancel();
+                            mViewQuestion.setText(setViewQuestion());
+                            mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
+                            addTime();
+                        }
                     }else {
                         if (mBreakCount == 0) {
                             startIntentResult();
@@ -347,19 +360,25 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         }
     }
 
-    private void mistakesUserSorry(){
+    private void mistakesUserSorry() {
         //if user answer wrong just step up index
-        mI++;
-        mCountMistake++;
-        mCurrentIndex++;
-        addQuestionModelElement();
-        countDownTimer.cancel();
-        // update btn
-        mViewQuestion.setText(setViewQuestion()); addQuestionModelElement();
-        countDownTimer.cancel();
-        // update btn
-        mViewQuestion.setText(setViewQuestion());
-        mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
+        if (mViewCountMistakes == 1) {
+            startIntentResult();
+        } else {
+            mI++;
+            mCountMistake++;
+            mCurrentIndex++;
+
+            addQuestionModelElement();
+            countDownTimer.cancel();
+            // update btn
+            mViewQuestion.setText(setViewQuestion());
+            addQuestionModelElement();
+            countDownTimer.cancel();
+            // update btn
+            mViewQuestion.setText(setViewQuestion());
+            mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
+        }
     }
 
     private void rightUserAnswer() {
