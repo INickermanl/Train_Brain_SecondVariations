@@ -20,18 +20,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="130dp"
         android:orientation="horizontal">
 
         <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="100"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/quantity_questions"
-            android:textAlignment="center"
+
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -39,9 +39,10 @@
             android:id="@+id/quantity_questions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="1dp"
             android:layout_weight="1"
             android:ems="2"
+            android:gravity="bottom"
             android:inputType="number"
             android:maxLength="3"
             android:minLines="1" />
@@ -62,7 +63,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/quantity_second_to_end"
-            android:textAlignment="center"
+            android:textAllCaps="false"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -71,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="32dp"
+            android:layout_marginLeft="70dp"
             android:ems="2"
             android:inputType="number"
             android:maxLength="2"

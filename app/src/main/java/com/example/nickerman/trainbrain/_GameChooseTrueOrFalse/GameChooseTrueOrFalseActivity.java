@@ -1,7 +1,9 @@
 package com.example.nickerman.trainbrain._GameChooseTrueOrFalse;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ActionMenuView;
@@ -53,12 +55,50 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ActionMenuView mItemQuantityQuestion;
 
-
+        //toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.game_true_or_false, menu);
         return true;
 
+    }
+        //click back
+    @Override
+    public void onBackPressed(){
+        /*super.onBackPressed();*/
+
+       openQuitDialog();
+
+
+    }
+
+    private void openQuitDialog() {
+
+        countDownTimer.cancel();
+
+        AlertDialog.Builder quitDialog = new AlertDialog.Builder(
+                GameChooseTrueOrFalseActivity.this);
+        quitDialog.setTitle("Exit: you want to end the game ?");
+
+        quitDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                mBreakCount = 1;
+
+                finish();
+            }
+        });
+
+        quitDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                addTime();
+            }
+        });
+
+        quitDialog.show();
     }
 
     @Override
@@ -68,6 +108,8 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         //toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
 
         mTimeView = (TextView) findViewById(R.id.quantity_second_item);
@@ -300,6 +342,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
         intent.putExtra(intentResult, mQuantityRightAnswer);
         startActivity(intent);
+        finish();
 
     }
 

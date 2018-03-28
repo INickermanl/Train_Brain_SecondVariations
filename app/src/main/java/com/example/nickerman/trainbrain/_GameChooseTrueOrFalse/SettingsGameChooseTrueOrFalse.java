@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.nickerman.trainbrain.R;
+import com.example.nickerman.trainbrain.__selectGame.SelectGame;
 
 public class SettingsGameChooseTrueOrFalse extends AppCompatActivity {
 
@@ -77,9 +78,17 @@ public class SettingsGameChooseTrueOrFalse extends AppCompatActivity {
                     intent.putExtra(mIntentQuantityQuestions, QuantityQuestions);
                     intent.putExtra(mIntentQuantitySeconds, QuantitySeconds);
                     startActivity(intent);
+
+
                 }
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
 
     }
 }

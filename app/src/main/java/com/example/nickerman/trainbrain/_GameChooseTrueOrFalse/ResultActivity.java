@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.nickerman.trainbrain.R;
+import com.example.nickerman.trainbrain.__selectGame.SelectGame;
+
+import java.time.Instant;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -23,6 +26,15 @@ public class ResultActivity extends AppCompatActivity {
 
         resultView = (TextView) findViewById(R.id.resultView);
         resultView.setText(String.valueOf(voise));
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
 
     }
 }
