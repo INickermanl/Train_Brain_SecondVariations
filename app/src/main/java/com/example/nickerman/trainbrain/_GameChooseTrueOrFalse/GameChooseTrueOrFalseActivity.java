@@ -266,12 +266,11 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     //METHOD FOR BUTTONS
         //update true button
     private void updateTrueButton(View view){
-        if((mQuantityMistakes - 1) > mCountMistake || mViewCountMistakes == 1){
+        if((mQuantityMistakes - 1) > mCountMistake){
             if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_true == view.getId()) {
                 rightUserAnswer();
             }else{
-                countDownTimer.cancel();
                 mistakesUserSorry();
             }
         }else{
@@ -282,7 +281,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     //update false button
     private void updateFalseButton(View view){
-        if((mQuantityMistakes - 1) > mCountMistake || mViewCountMistakes == 1){
+        if((mQuantityMistakes - 1) > mCountMistake){
             if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_false == view.getId()) {
                 rightUserAnswer();
@@ -318,17 +317,15 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                     mI++;
                     mCurrentIndex++;
                     addQuestionModelElement();
-                    if((mQuantityMistakes - 1) > mCountMistake || mViewCountMistakes == 1){
+                    if((mQuantityMistakes - 1) > mCountMistake){
 
-                        if(mViewCountMistakes == 1){
-                            startIntentResult();
-                        }else {
+
                             mCountMistake++;
                             countDownTimer.cancel();
                             mViewQuestion.setText(setViewQuestion());
                             mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
                             addTime();
-                        }
+
                     }else {
                         if (mBreakCount == 0) {
                             startIntentResult();
@@ -363,10 +360,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     private void mistakesUserSorry() {
         //if user answer wrong just step up index
-        if (mViewCountMistakes == 1) {
-            startIntentResult();
-            mViewCountMistakes = 0;
-        } else {
+
             mI++;
             mCountMistake++;
             mCurrentIndex++;
@@ -380,7 +374,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
             // update btn
             mViewQuestion.setText(setViewQuestion());
             mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
-        }
+
     }
 
     private void rightUserAnswer() {
