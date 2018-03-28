@@ -271,6 +271,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                     && R.id.button_true == view.getId()) {
                 rightUserAnswer();
             }else{
+                countDownTimer.cancel();
                 mistakesUserSorry();
             }
         }else{
@@ -364,6 +365,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         //if user answer wrong just step up index
         if (mViewCountMistakes == 1) {
             startIntentResult();
+            mViewCountMistakes = 0;
         } else {
             mI++;
             mCountMistake++;
