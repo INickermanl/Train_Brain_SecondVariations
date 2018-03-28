@@ -26,7 +26,7 @@ import java.util.zip.Inflater;
 public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     private TextView mTimeView;
-    private TextView mQuantityQuestionsView;
+    private TextView mQuantityMistakesView;
 
 
     private TextView mViewQuestion;
@@ -113,7 +113,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
 
         mTimeView = (TextView) findViewById(R.id.quantity_second_item);
-        mQuantityQuestionsView = (TextView) findViewById(R.id.quantity_questions_item);
+        mQuantityMistakesView = (TextView) findViewById(R.id.quantity_questions_item);
 
 
 
@@ -135,7 +135,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         mViewQuestion.setText(setViewQuestion());
 
         //sent to toolbar quantity question
-        mQuantityQuestionsView.setText(" " + mQuantityRightAnswer);
+        mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
 
 
         mTrueButton = (ImageButton) findViewById(R.id.button_true);
@@ -312,6 +312,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                         mCountMistake++;
                         countDownTimer.cancel();
                         mViewQuestion.setText(setViewQuestion());
+                        mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
                         addTime();
 
                     }else {
@@ -319,14 +320,6 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                             startIntentResult();
                         }
                     }
-                  /* if(mCurrentIndex < mQuestionModel.size() - 1){
-                       mCurrentIndex++;
-                       mViewQuestion.setText(setViewQuestion());
-                       addTime();
-
-                   }else if(mCurrentIndex == mQuantityQuestions - 1){
-                       startIntentResult();
-                   }*/
                 }
             }.start();
 
@@ -366,6 +359,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         countDownTimer.cancel();
         // update btn
         mViewQuestion.setText(setViewQuestion());
+        mQuantityMistakesView.setText(" " + (mQuantityMistakes - mCountMistake));
     }
 
     private void rightUserAnswer() {
@@ -376,7 +370,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
         addQuestionModelElement();
         //update btn
         mViewQuestion.setText(setViewQuestion());
-        mQuantityQuestionsView.setText(" " + mQuantityRightAnswer);
+
 
     }
 
