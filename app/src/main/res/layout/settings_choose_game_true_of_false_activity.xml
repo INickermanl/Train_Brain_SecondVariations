@@ -42,7 +42,9 @@
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:ems="2"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="3"
+            android:minLines="1" />
 
     </LinearLayout>
 
@@ -71,7 +73,9 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="32dp"
             android:ems="2"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="2"
+            android:minLines="1" />
     </LinearLayout>
 
     <LinearLayout

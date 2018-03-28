@@ -9,17 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".___WelcomeScreen.WelcomeScreen">
+        <activity
+            android:name=".___WelcomeScreen.WelcomeScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="._GameChooseTrueOrFalse.GameChooseTrueOrFalseActivity" />
-        <activity android:name=".__selectGame.SelectGame" />
-        <activity android:name="._GameChooseTrueOrFalse.SettingsGameChooseTrueOrFalse" />
-        <activity android:name="._GameChooseTrueOrFalse.ResultActivity" />
+        <activity
+            android:name="._GameChooseTrueOrFalse.GameChooseTrueOrFalseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".__selectGame.SelectGame"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="._GameChooseTrueOrFalse.SettingsGameChooseTrueOrFalse"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="._GameChooseTrueOrFalse.ResultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

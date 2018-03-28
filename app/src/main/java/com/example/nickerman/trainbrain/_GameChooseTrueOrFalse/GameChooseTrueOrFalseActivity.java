@@ -40,6 +40,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     private int mQuantityRightAnswer = 0;
     private int mCountMistake = 0;
     private int mI = 0;
+    private int mBreakCount = 0;
 
 
 
@@ -214,7 +215,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
     //METHOD FOR BUTTONS
         //update true button
     private void updateTrueButton(View view){
-        if((mQuantityMistakes) != mCountMistake){
+        if((mQuantityMistakes - 1) > mCountMistake){
             if (mQuestionModel.get(mCurrentIndex).getResult() == mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_true == view.getId()) {
                 rightUserAnswer();
@@ -229,7 +230,7 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     //update false button
     private void updateFalseButton(View view){
-        if((mQuantityMistakes) != mCountMistake){
+        if((mQuantityMistakes - 1) > mCountMistake){
             if (mQuestionModel.get(mCurrentIndex).getResult() != mQuestionModel.get(mCurrentIndex).getViewAnswer()
                     && R.id.button_false == view.getId()) {
                 rightUserAnswer();
@@ -248,7 +249,6 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
         int second = mQuantitySeconds;
 
-
             countDownTimer = new CountDownTimer(second * 1000, 1000) {
                 @Override
                 public void onTick(long millis) {
@@ -262,20 +262,21 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     //when time is over
-                    mCountMistake++;
+
                     mI++;
                     mCurrentIndex++;
                     addQuestionModelElement();
-                    if((mQuantityMistakes + 1) != mCountMistake){
-
+                    if((mQuantityMistakes - 1) > mCountMistake){
+                        mCountMistake++;
                         countDownTimer.cancel();
                         mViewQuestion.setText(setViewQuestion());
                         addTime();
 
-                    }else{
-                        startIntentResult();
+                    }else {
+                        if (mBreakCount == 0) {
+                            startIntentResult();
+                        }
                     }
-
                   /* if(mCurrentIndex < mQuestionModel.size() - 1){
                        mCurrentIndex++;
                        mViewQuestion.setText(setViewQuestion());
@@ -292,6 +293,8 @@ public class GameChooseTrueOrFalseActivity extends AppCompatActivity {
 
     private void startIntentResult(){
         //so step up index arrayList for do't go to result activity twice
+
+        mBreakCount = 1;
         countDownTimer.cancel();
         //open result activity
         Intent intent  = new Intent(GameChooseTrueOrFalseActivity.this, ResultActivity.class);
